@@ -1,0 +1,214 @@
+[
+	{
+		"name": "ammonium",
+		"formula": "NH4^+"
+	},
+	{
+		"name": "hydronium",
+		"formula": "H3O^+"
+	},
+	{
+		"name": "acetate",
+		"formula": "C2H3O2^-"
+	},
+	{
+		"name": "amide",
+		"formula": "NH2^-"
+	},
+	{
+		"name": "azide",
+		"formula": "N3^-"
+	},
+	{
+		"name": "hydrazide",
+		"formula": "N2H3^-"
+	},
+	{
+		"name": "benzoate",
+		"formula": "C7H5O2^-"
+	},
+	{
+		"name": "bitartrate",
+		"formula": "HC4H4O6^-"
+	},
+	{
+		"name": "bromate",
+		"formula": "BrO3^-"
+	},
+	{
+		"name": "perchlorate",
+		"formula": "ClO4^-"
+	},
+	{
+		"name": "chlorate",
+		"formula": "ClO3^-"
+	},
+	{
+		"name": "chlorite",
+		"formula": "ClO2^-"
+	},
+	{
+		"name": "hypochlorite",
+		"formula": "ClO^-"
+	},
+	{
+		"name": "cyanate",
+		"formula": "OCN^-"
+	},
+	{
+		"name": "cyanide",
+		"formula": "CN^-"
+	},
+	{
+		"name": "bicarbonate",
+		"formula": "HCO3^-"
+	},
+	{
+		"name": "bisulfate",
+		"formula": "HSO4^-"
+	},
+	{
+		"name": "bisulfite",
+		"formula": "HSO3^-"
+	},
+	{
+		"name": "bisulfide",
+		"formula": "HS^-"
+	},
+	{
+		"name": "hydroxide",
+		"formula": "OH^-"
+	},
+	{
+		"name": "iodate",
+		"formula": "IO3^-"
+	},
+	{
+		"name": "triiodide",
+		"formula": "I3^-"
+	},
+	{
+		"name": "nitrate",
+		"formula": "NO3^-"
+	},
+	{
+		"name": "nitrite",
+		"formula": "NO2^-"
+	},
+	{
+		"name": "permanganate",
+		"formula": "MnO4^-"
+	},
+	{
+		"name": "dihydrogen phosphate",
+		"formula": "H2PO4^-"
+	},
+	{
+		"name": "thiocyanate",
+		"formula": "SCN^-"
+	},
+	{
+		"name": "carbonate",
+		"formula": "CO3^2-"
+	},
+	{
+		"name": "chromate",
+		"formula": "CrO4^2-"
+	},
+	{
+		"name": "dichromate",
+		"formula": "Cr2O7^2-"
+	},
+	{
+		"name": "monohydrogen phosphate",
+		"formula": "HPO4^2-"
+	},
+	{
+		"name": "peroxidisulfate",
+		"formula": "S2O8^2-"
+	},
+	{
+		"name": "pyrosulfate",
+		"formula": "S2O7^2-"
+	},
+	{
+		"name": "manganate",
+		"formula": "MnO4^2-"
+	},
+	{
+		"name": "oxalate",
+		"formula": "C2O4^2-"
+	},
+	{
+		"name": "peroxide",
+		"formula": "O2^2-"
+	},
+	{
+		"name": "phthalate",
+		"formula": "C8H4O4^2-"
+	},
+	{
+		"name": "metasilicate",
+		"formula": "SiO3^2-"
+	},
+	{
+		"name": "sulfate",
+		"formula": "SO4^2-"
+	},
+	{
+		"name": "sulfite",
+		"formula": "SO3^2-"
+	},
+	{
+		"name": "thiosulfate",
+		"formula": "S2O3^2-"
+	},
+	{
+		"name": "tartrate",
+		"formula": "C4H4O6^2-"
+	},
+	{
+		"name": "tetraborate",
+		"formula": "B4O7^2-"
+	},
+	{
+		"name": "aluminate",
+		"formula": "AlO3^3-"
+	},
+	{
+		"name": "arsenate",
+		"formula": "AsO4^3-"
+	},
+	{
+		"name": "arsenite",
+		"formula": "AsO3^3-"
+	},
+	{
+		"name": "borate",
+		"formula": "BO3^3-"
+	},
+	{
+		"name": "citrate",
+		"formula": "C6H5O7^3-"
+	},
+	{
+		"name": "ferricyanide",
+		"formula": "Fe(CN)6^3-"
+	},
+	{
+		"name": "phosphate",
+		"formula": "PO4^3-"
+	},
+	{
+		"name": "phosphite",
+		"formula": "PO3^3-"
+	},
+	{
+		"name": "ferrocyanide",
+		"formula": "Fe(CN)6^4-"
+	},
+	{
+		"name": "silicate",
+		"formula": "SiO4^4-"
+	}
+]

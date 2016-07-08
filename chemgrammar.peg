@@ -1,0 +1,71 @@
+start
+  = expression
+
+number
+  = digits:[0-9]+ { return parseInt(digits.join(""), 10); }
+
+plusminus
+  = "+" / "-"
+
+expression
+  = reaction
+  / side
+
+reaction
+  = a:side " "* b:arrow " "* c:side { return new Reaction(a,b,c); }
+
+side
+  = a:stoichmolecule " "* "+" " "* b:side { return new Side(a,b); }
+  / stoichmolecule
+
+arrow
+  = "->" { return "&rarr;"; }
+  / "<->" { return "&harr;"; }
+  
+stoichmolecule
+  = x:number " "* a:molecule { return new Molecule(x,a); }
+  / molecule
+
+molecule
+  = phased
+  / formula
+
+phased
+  = a:formula " "* b:phase { return new Formula(a.unit,a.rest,b); }
+  / formula
+
+phase
+  = "(" " "* a:label " "* ")" { return "("+a+")"; }
+
+label 
+  = "s" / "c" / "aq" / "l" / "g"
+
+formula
+  = a:suffixed " "* b:formula { return new Formula(a,b,""); }
+  / suffixed
+
+suffixed
+  = a:unsuffixed " "* b:suffix { return new Unit(a,b); }
+  / unsuffixed
+
+unsuffixed
+  = e:element { return new Element(e); }
+  / paren_group
+
+suffix
+  = a:num_suffix " "* b:ion_suffix {return new Suffix(a,b);}
+  / a:num_suffix { return new Suffix(a,""); }
+  / a:ion_suffix { return new Suffix(1,a); }
+
+num_suffix
+  = x:number {return x; }
+
+ion_suffix
+  = "^" x:number a:plusminus { return x+a; }
+  / "^" a:plusminus { return a; }
+
+paren_group
+  = "(" " "* a:formula " "* ")" { a.paren = true; return a; }
+
+element
+  = 'e' / 'Ac' / 'Ag' / 'Al' / 'Am' / 'Ar' / 'As' / 'At' / 'Au' / 'Ba' / 'Be' / 'Bh' / 'Bi' / 'Bk' / 'Br' / 'B' / 'Ca' / 'Cd' / 'Ce' / 'Cf' / 'Cl' / 'Cm' / 'Cn' / 'Co' / 'Cr' / 'Cs' / 'Cu' / 'C' / 'Db' / 'Ds' / 'Dy' / 'Er' / 'Es' / 'Eu' / 'Fe' / 'Fl' / 'Fm' / 'Fr' / 'F' / 'Ga' / 'Gd' / 'Ge' / 'He' / 'Hf' / 'Hg' / 'Ho' / 'Hs' / 'H' / 'In' / 'Ir' / 'I' / 'Kr' / 'K' / 'La' / 'Li' / 'Lr' / 'Lu' / 'Lv' / 'Md' / 'Mg' / 'Mn' / 'Mo' / 'Mt' / 'Na' / 'Nb' / 'Nd' / 'Ne' / 'Ni' / 'No' / 'Np' / 'N' / 'Os' / 'O' / 'Pa' / 'Pb' / 'Pd' / 'Pm' / 'Po' / 'Pr' / 'Pt' / 'Pu' / 'P' / 'Ra' / 'Rb' / 'Re' / 'Rf' / 'Rg' / 'Rh' / 'Rn' / 'Ru' / 'Sb' / 'Sc' / 'Se' / 'Sg' / 'Si' / 'Sm' / 'Sn' / 'Sr' / 'S' / 'Ta' / 'Tb' / 'Tc' / 'Te' / 'Th' / 'Ti' / 'Tl' / 'Tm' / 'Uuo' / 'Uup' / 'Uus' / 'Uut' / 'U' / 'V' / 'W' / 'Xe' / 'Yb' / 'Y' / 'Zn' / 'Zr'

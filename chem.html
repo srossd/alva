@@ -1,0 +1,25 @@
+<head>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	<script src="peg.js"></script>
+	<script>
+		var parser;
+		
+		function parse() {
+			$("#result").html("");
+			$("#result").html(parser.parse($("#input").val()));
+		}
+		
+		$(document).ready(function() {
+			$.ajax({url: "chemgrammar.peg",dataType: "text",success: function(msg) {
+				parser = PEG.buildParser(msg);
+			}});
+			$("#input").keyup(function() {
+				parse();
+			});
+		});
+	</script>
+</head>
+<body>
+	<input type="text" id="input" />
+	<p id="result"></p>
+</body>

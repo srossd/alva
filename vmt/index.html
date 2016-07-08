@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+    <title>VMT Chat</title>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src=
+    "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    type="text/javascript">
+
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+    </script>
+    <script src=
+    'https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <link href="/fancybox/source/jquery.fancybox.css?v=2.1.4" media="screen" rel="stylesheet" type="text/css">
+    <script src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.4" type="text/javascript"></script>
+    <script src="emojify/emojify.js"></script>
+    <script src="vmtchat.js"></script>
+    <link href='stylesheet.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="centerbox">
+        <div class="left">
+            <div id="problem"><p></p></div>
+
+            <div id="messages"></div>
+
+            <div id="typer">
+                <textarea cols="60" id="message" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="right">
+            <div id="users"></div>
+        </div>
+    </div>
+</body>
+</html>

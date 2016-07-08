@@ -1,0 +1,91 @@
+<trainingset>
+	<title>Equivalent capacitance</title>
+	<problem>
+		<variation>
+			<statement>If a circuit has two capacitors in parallel, with capacitance #c1# $\mu F$ and capacitance #c2# $\mu F$, find the capacitance of the circuit.</statement>
+			<answer>
+				<value accuracy="exact">#ans1#</value>
+				<trailer>$\mu F$</trailer>
+			</answer>
+			<solution>
+			The equivalent capacitance of capacitors in parallel is simply the sum of their capacitances. So, the answer is $#c1# + #c2# = \textbf{#ans1# } \mu F$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>Find the equivalent capacitance of 3 capacitors wired in parallel, with capacitances #c1# $\mu F$, #c2# $\mu F$, and #c3# $\mu F$.</statement>
+			<answer>
+				<value accuracy="exact">#ans2#</value>
+				<trailer>$\mu F$</trailer>
+			</answer>			
+			<solution>
+			The equivalent capacitance of capacitors in parallel is simply the sum of their capacitances. So, the answer is $#c1# + #c2# + #c3# = \textbf{#ans2# } \mu F$.
+			</solution>
+		</variation>
+		<variable id="c1" lower="5" upper="100" step="5"></variable>
+		<variable id="c2" lower="5" upper="100" step="5"></variable>
+		<variable id="c3" lower="5" upper="100" step="5"></variable>
+		<expression id="c1">c1</expression>
+		<expression id="c2">c2</expression>
+		<expression id="c3">c3</expression>
+		<expression id="ans1">c1+c2</expression>
+		<expression id="ans2">c1+c2+c3</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>Two capacitors with capacitance #c1# $\mu F$ and #c2# $\mu F$ are wired in series. Find the equivalent capacitance.</statement>
+			<answer>
+				<value accuracy="-6">#ans1#</value>
+				<trailer>$\mu F$</trailer>
+			</answer>
+			<solution>
+			The equivalent capacitance of two capacitors in parallel is given by $\frac{1}{C_{eq}} = \frac{1}{C_1}+\frac{1}{C_2}$. So, the answer is $\frac{1}{\frac{1}{#c1#} + \frac{1}{#c2#}} = \textbf{#ans1# } \mu F$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>If two capacitors with capacitances of #c1# $\mu F$ and #c2# $\mu F$ are wired in series, and a third resistor with capacitance #c3# $\mu F$ is wired in parallel with the series system, find the equivalent capacitance of the circuit.</statement>
+			<answer>
+				<value accuracy="-6">#ans2#</value>
+				<trailer>$\mu F$</trailer>
+			</answer>
+			<solution>
+			We can decompose this problem into finding the equivalent capacitance of the parallel capacitors, and then adding this to the third capacitor.
+			The equivalent capacitance of two capacitors in parallel is given by $\frac{1}{C_{eq}} = \frac{1}{C_1}+\frac{1}{C_2}$. So, the first capacitance is $\frac{1}{\frac{1}{#c1#} + \frac{1}{#c2#}} = #ans1# \mu F$.
+			The equivalent capacitance of the series circuit is $C_{eq} + C_{3} = #ans1# + #c3# = \textbf{#ans2#} \mu F$.
+			</solution>
+		</variation>
+		<code><![CDATA[
+			var factors = function(num) {
+				var n_factors = [];
+				
+				for (var i = 1; i <= Math.floor(Math.sqrt(num)); i += 1)
+					if (num % i === 0) {
+						pair = [i, num/i]
+						if (num / i !== i)
+							n_factors.push(pair);
+					}
+				n_factors.sort();  // numeric sort
+				return n_factors;
+			};
+			var pairs = [];
+			for(var i = 0; i < 1000; i++) {
+				var facts = factors(i); 
+				for(var j = 0; j < facts.length; j++) { 
+					var sum = facts[j][0]+facts[j][1]; 
+					for(var k = 0; k < facts.length; k++) { 
+						if(facts[k][0] == sum || facts[k][1] == sum) 
+							pairs.push(facts[j]);
+					} 
+				} 
+			}
+			var pair = randSelect(pairs);
+			c1 = pair[0];
+			c2 = pair[1];
+		]]></code>
+		<variable id="c3" lower="5" upper="100" step="5"></variable>
+		<expression id="c1">c1</expression>
+		<expression id="c2">c2</expression>
+		<expression id="c3">c3</expression>
+		<expression id="ans1">1/(1/c1+1/c2)</expression>
+		<expression id="ans2">1/(1/c1+1/c2)+c3</expression>
+	</problem>
+</trainingset>

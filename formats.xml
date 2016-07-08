@@ -1,0 +1,184 @@
+<formats>
+	<default>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#
+		]]>
+	</default>
+	<chem>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#
+		]]>
+	</chem>
+	<medium>
+		<![CDATA[
+			#1#<input type="text" class="medium" id="ans1">#2#
+		]]>
+	</medium>
+	<fraction>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			<div class="line" style="width:46px; text-align:left;">
+			<input type="text" class="small" id="ans2">
+		]]>
+	</fraction>
+	<negfraction>
+		<![CDATA[
+			-<input type="text" class="small" id="ans1">
+			<div class="line" style="width:46px; text-align:left;">
+			<input type="text" class="small" id="ans2">
+		]]>
+	</negfraction>
+	<scinot>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			$\times$ 10
+			<sup><input type="text" class="tiny" id="ans2"></sup>
+		]]>
+	</scinot>
+	<radical>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			$\sqrt{\phantom{m}}$
+			<input type="text" class="small" id="ans2">
+		]]>
+	</radical>
+	<complex>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			+
+			<input type="text" class="small" id="ans2">i
+		]]>
+	</complex>
+	<ul2>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#
+		]]>
+	</ul2>
+	<ul3>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#<br>
+			#5#<input type="text" class="wide" id="ans3">#6#
+		]]>
+	</ul3>
+	<ul4>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#<br>
+			#5#<input type="text" class="wide" id="ans3">#6#<br>
+			#7#<input type="text" class="wide" id="ans4">#8#
+		]]>
+	</ul4>
+	<ul5>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#<br>
+			#5#<input type="text" class="wide" id="ans3">#6#<br>
+			#7#<input type="text" class="wide" id="ans4">#8#<br>
+			#9#<input type="text" class="wide" id="ans5">#10#
+		]]>
+	</ul5>
+	<ol2>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#
+		]]>
+	</ol2>
+	<ol2radical>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			$\sqrt{\phantom{m}}$
+			<input type="text" class="small" id="ans2"><br>
+			<input type="text" class="small" id="ans3">
+			$\sqrt{\phantom{m}}$
+			<input type="text" class="small" id="ans4">
+		]]>
+	</ol2radical>
+	<ol3>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#<br>
+			#5#<input type="text" class="wide" id="ans3">#6#
+		]]>
+	</ol3>
+	<ol4>
+		<![CDATA[
+			<input type="text" class="wide" id="ans1">#2#<br>
+			<input type="text" class="wide" id="ans2">#4#<br>
+			<input type="text" class="wide" id="ans3">#6#<br>
+			<input type="text" class="wide" id="ans4">#8#
+		]]>
+	</ol4>
+	<ol5>
+		<![CDATA[
+			#1#<input type="text" class="wide" id="ans1">#2#<br>
+			#3#<input type="text" class="wide" id="ans2">#4#<br>
+			#5#<input type="text" class="wide" id="ans3">#6#<br>
+			#7#<input type="text" class="wide" id="ans4">#8#<br>
+			#9#<input type="text" class="wide" id="ans5">#10#
+		]]>
+	</ol5>
+	<binomial2>
+		<![CDATA[
+			(<input type="text" class="tiny" id="ans1">x+<input type="text" class="tiny" id="ans2">y)
+			(<input type="text" class="tiny" id="ans3">x+<input type="text" class="tiny" id="ans4">y)
+		]]>
+	</binomial2>
+	<binomial2const>
+		<![CDATA[
+			<input type="text" class="tiny" id="ans1">
+			(<input type="text" class="tiny" id="ans2">x+<input type="text" class="tiny" id="ans3">y)
+			(<input type="text" class="tiny" id="ans4">x+<input type="text" class="tiny" id="ans5">y)
+		]]>
+	</binomial2const>
+	<binomial3>
+		<![CDATA[
+			(<input type="text" class="tiny" id="ans1">x+<input type="text" class="tiny" id="ans2">y)
+			(<input type="text" class="tiny" id="ans3">x+<input type="text" class="tiny" id="ans4">y)
+			(<input type="text" class="tiny" id="ans5">x+<input type="text" class="tiny" id="ans6">y)
+		]]>
+	</binomial3>
+	<polynomial6>
+		<![CDATA[
+			<input type="text" class="tiny" id="ans1">x$^6$+
+			<input type="text" class="tiny" id="ans2">x$^5$+
+			<input type="text" class="tiny" id="ans3">x$^4$+
+			<input type="text" class="tiny" id="ans4">x$^3$+
+			<input type="text" class="tiny" id="ans5">x$^2$+
+			<input type="text" class="tiny" id="ans6">x+
+			<input type="text" class="tiny" id="ans7">
+		]]>
+	</polynomial6>
+	<radnum>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			$\sqrt{\phantom{m}}$
+			<input type="text" class="small" id="ans2"><br>
+			<input type="text" class="half" id="ans3">
+		]]>
+	</radnum>
+	<fracexp>
+		<![CDATA[
+			Exponent of x:<br>
+			<input type="text" class="small" id="ans1">
+			<div class="line" style="width:46px; text-align:left;">
+			<input type="text" class="small" id="ans2">
+			</sup>
+		]]>
+	</fracexp>
+	<doubleinequality>
+		<![CDATA[
+			<input type="text" class="small" id="ans1">
+			$\le x \le$
+			<input type="text" class="small" id="ans2">
+		]]>
+	</doubleinequality>
+	<orderedpair>
+		<![CDATA[
+			(<input type="text" class="small" id="ans1">
+			,
+			<input type="text" class="small" id="ans2">)
+		]]>
+	</orderedpair>
+</formats>

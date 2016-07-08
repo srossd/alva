@@ -1,0 +1,33 @@
+<trainingset>
+	<title>Factoring</title>
+	<problem>
+		<variation>
+			<statement>Factor the following binomial: $#trinomial#$</statement>
+			<answer type="math">
+				<value>#binomial#</value>
+			</answer>			
+			<solution>
+			$#trinomial#$ can be factored as $#binomial#$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>Find the following product: $#binomial#$</statement>
+			<answer type="math">
+				<value>#trinomial#</value>
+			</answer>			
+			<solution>
+			$#binomial# = #trinomial#$.
+			</solution>
+		</variation>
+		<variable id="alpha" lower="2" upper="10" step="1"></variable>
+		<variable id="beta" lower="-10" upper="10" step="1"></variable>
+		<variable id="gamma" lower="-10" upper="10" step="1"></variable>
+		<expression id="alpha">alpha</expression>
+		<expression id="beta">beta</expression>
+		<expression id="gamma">gamma</expression>
+		<expression id="sum">-1*alpha*(beta+gamma)</expression>
+		<expression id="prod">alpha*(beta*gamma)</expression>
+		<expression id="binomial">"alpha (x "+(beta > 0 ? "-" : "+") +" "+Math.abs(beta)+")(x "+(gamma > 0 ? "-" : "+") +" "+Math.abs(gamma)+")"</expression>
+		<expression id="trinomial">(alpha != 1 ? "alpha" : "") + "x^2 "+ (-1*alpha*(beta+gamma) > 0 ? "+" : "-") + Math.abs(alpha*(beta+gamma))+"x "+(alpha*(beta*gamma) > 0 ? "+" : "-")+" "+Math.abs(alpha*(beta*gamma))</expression>
+	</problem>
+</trainingset>

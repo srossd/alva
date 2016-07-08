@@ -1,0 +1,114 @@
+<trainingset>
+	<title>Areas 1</title>
+	<problem>
+		<variation>
+			<statement>Find the area of a circle with radius #rad#.</statement>
+			<answer>
+				<value accuracy="exact">#ans#</value>
+				<trailer>$\pi$</trailer>
+			</answer>
+			<solution>
+			The area of a circle is $\pi r^2$. $\pi (#rad#)^2 = #ans# \pi$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>A circle has a radius of #rad#. Find its area.</statement>
+			<answer>
+				<value accuracy="exact">#ans#</value>
+				<trailer>$\pi$</trailer>
+			</answer>
+			<solution>
+			The area of a circle is $\pi r^2$. $\pi (#rad#)^2 = #ans# \pi$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the area of a circle with a diameter of #diam#?</statement>
+			<answer>
+				<value accuracy="exact">#ans#</value>
+				<trailer>$\pi$</trailer>
+			</answer>
+			<solution>
+			The area of a circle is $\pi r^2$. $\pi (\frac{#diam#}{2})^2 = #ans# \pi$.
+			</solution>
+		</variation>
+		<variable id="a" lower="2" upper="15" step="1"></variable>
+		<expression id="rad">a</expression>
+		<expression id="diam">2*a</expression>
+		<expression id="ans">a*a</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>Find the area of a triangle with base #base# and height #height#.</statement>
+			<answer>
+				<value accuracy="exact">#bh#</value>
+			</answer>
+			<solution>
+			The area of a triangle is $\frac{1}{2} b h$. $\frac{1}{2} (#base#) (#height#) = #bh#$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>Find the area of a right triangle with a leg #leg1# and hypotenuse #hypot#.</statement>
+			<answer>
+				<value accuracy="exact">#right#</value>
+			</answer>
+			<solution>
+			From the Pythagorean theorem, we have that $(#leg1#)^2 + h^2 = (#hypot#)^2$. Therefore, $h = \sqrt{(#hypot#)^2-(#leg1#)^2} = #leg2#$.
+			The area of a triangle is $\frac{1}{2} b h$. $\frac{1}{2} (#leg1#) (#leg2#) = #bh#$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>Find the area of a right triangle with a leg #leg2# and hypotenuse #hypot#.</statement>
+			<answer>
+				<value accuracy="exact">#right#</value>
+			</answer>
+			<solution>
+			From the Pythagorean theorem, we have that $(#leg2#)^2 + h^2 = (#hypot#)^2$. Therefore, $h = \sqrt{(#hypot#)^2-(#leg2#)^2} = #leg1#$.
+			The area of a triangle is $\frac{1}{2} b h$. $\frac{1}{2} (#leg1#) (#leg2#) = #right#$.
+			</solution>
+		</variation>
+		<variable id="a" lower="2" upper="20" step="1"></variable>
+		<variable id="b" lower="2" upper="20" step="1"></variable>
+		<variable id="u" lower="1" upper="5" step="1"></variable>
+		<variable id="v" lower="1" upper="5" step="1"></variable>
+		<expression id="base">a</expression>
+		<expression id="height">b</expression>
+		<expression id="bh">a*b/2</expression>
+		<expression id="leg1">u*u+2*u*v</expression>
+		<expression id="leg2">2*v*v+2*u*v</expression>
+		<expression id="hypot">u*u+2*v*v+2*u*v</expression>
+		<expression id="right">(u*u+2*u*v)*(2*v*v+2*u*v)/2</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>Find the area of a square with side length #side#.</statement>
+			<answer>
+				<value accuracy="exact">#area#</value>
+			</answer>
+			<solution>
+			The area of a square is its side length squared. Therefore, $A = #side#^2 = #area#$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>Find the area of a square with a diagonal of #diag#.</statement>
+			<answer>
+				<value accuracy="exact">#area#</value>
+			</answer>
+			<solution>
+			The area of a square is its side length squared, and its diagonal is its side length times $\sqrt{2}$. Therefore, $A = (\frac{#side#\sqrt{2}}{\sqrt{2})^2 = #side#^2 = #area#$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>A square is inscribed in a circle with a diameter of #diag#. Find the area of the square.</statement>
+			<answer>
+				<value accuracy="exact">#area#</value>
+			</answer>
+			<solution>
+			The area of a square is its side length squared, and its diagonal is its side length times $\sqrt{2}$. Therefore, $A = (\frac{#side#\sqrt{2}}{\sqrt{2})^2 = #side#^2 = #area#$.
+			</solution>
+		</variation>
+		<variable id="a" lower="1" upper="30" step="1"></variable>
+		<expression id="side">a</expression>
+		<expression id="diag">"$a\\sqrt{2}$"</expression>
+		<expression id="area">a*a</expression>
+	</problem>
+</trainingset>

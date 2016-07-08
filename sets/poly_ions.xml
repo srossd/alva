@@ -1,0 +1,27 @@
+<trainingset>
+	<title>Polyatomic Ion Names</title>
+	<data>sets/poly_ions.json</data>
+	<problem>
+		<variation>
+			<statement>What is the name of the ion chem[#formula#]?</statement>
+			<answer>
+				<value>#name#</value>
+			</answer>			
+			<solution>
+			chem[#formula#] is the chemical formula for the ion #name#.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the formula of the ion named #name#?</statement>
+			<answer type="chem">
+				<value>#formula#</value>
+			</answer>		
+			<solution>
+			chem[#formula#] is the chemical formula for the ion #name#.
+			</solution>
+		</variation>
+		<variable id="ion" obj="data['poly_ions']"></variable>
+		<expression id="name">ion["name"]</expression>
+		<expression id="formula">ion["formula"]</expression>
+	</problem>
+</trainingset>

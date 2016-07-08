@@ -1,0 +1,20 @@
+\documentclass[preview]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{euler}
+
+\begin{document}
+
+\newcommand{\phospholipid}[4]{
+	\draw[ball color=red!50] #1 circle (#2);
+	\draw[ultra thick,decorate, decoration={snake}] ($#1+({#4-15}:#2)$) -- ++(#4:#3);
+	\draw[ultra thick,decorate, decoration={snake}] ($#1+({#4+15}:#2)$) -- ++(#4:#3);
+}
+
+\begin{tikzpicture}
+\foreach \theta in {0,30,...,330} \phospholipid{(\theta:3)}{0.7}{1.5}{\theta};
+\end{tikzpicture}
+
+\end{document}

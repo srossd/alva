@@ -1,0 +1,126 @@
+<html>
+<head>
+  <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <style>
+	body {
+	  margin-top: 10px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  width: 500px;
+	  text-align: center;
+	}
+	#colorholder {
+	  width: 480px;
+	  height: 30px;
+	  border: 2px solid #424547;
+	  margin-top: 5px;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+
+	#canvas {
+	  border: 3px solid #999
+	}
+
+	.colorbox {
+	  width: 22px;
+	  height: 22px;
+	  margin: 1px;
+	  display: inline-block;
+	  border: 3px solid black;
+	}
+  </style>
+</head>
+<body>
+<div>
+  <canvas id="canvas" width="480" height="420"></canvas>
+</div>
+<div id="colorholder"></div>
+<script>
+var drawers = {};
+var contexts = {};
+var id = Math.floor(100*Math.random());
+$(document).ready(function () {
+	var currentColor = "000";
+	var mouseDown = false;
+
+	var drawersRef = new Firebase('https://alva2.firebaseio.com/canvastest/drawers/');
+	drawersRef.child(id).set({currentColor: currentColor});
+	drawersRef.child(id).onDisconnect().remove();
+	var actionsRef = new Firebase('https://alva2.firebaseio.com/canvastest/actions/');
+	actionsRef.onDisconnect().remove();
+
+	var myCanvas = $('#canvas')[0];
+	var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
+	if (myContext == null) {
+	  alert("You must use a browser that supports HTML5 Canvas to use the whiteboard.");
+	  return;
+	}
+	contexts[id] = myContext;
+
+	var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff"];
+	for (c in colors) {
+	  var item = $('<div/>').css("background-color", '#' + colors[c]).addClass("colorbox");
+	  item.click((function () {
+		var col = colors[c];
+		return function () {
+		  currentColor = col;
+		  drawersRef.child(id).set({currentColor: currentColor});
+		};
+	  })());
+	  item.appendTo('#colorholder');
+	}
+
+	//Keep track of if the mouse is up or down
+	$("#canvas").mousedown(function (e) {
+		e.preventDefault();
+		mouseDown = true;
+		actionsRef.push({id: id, action: "mousedown", x: e.offsetX, y: e.offsetY});
+	});
+	$("#canvas").mousemove(function(e) {
+		e.preventDefault();
+		if(mouseDown) {
+			actionsRef.push({id: id, action: "mousemove", x: e.offsetX, y: e.offsetY});
+		}
+	});
+	$("#canvas").mouseup(function (e) {
+		e.preventDefault();
+		mouseDown = false;
+		actionsRef.push({id: id, action: "mouseup", x: e.offsetX, y: e.offsetY});
+	});
+
+	drawersRef.on("value", function(snapshot) {
+		drawers = snapshot.val();
+		for(drawer_id in drawers) {
+			var myCanvas = $('#canvas')[0];
+			var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
+			contexts[drawer_id] = myContext;
+		}
+	});
+
+	actionsRef.on("child_added", function(snapshot) {
+		var ss = snapshot.val();
+		var context = contexts[ss.id];
+		context.lineWidth = 2;
+		context.strokeStyle = "#"+drawers[ss.id].currentColor;
+		if(drawers[ss.id].currentColor == "fff")
+			context.lineWidth *= 10;
+		if(ss.action == "mousedown") {
+			context.beginPath();
+			context.moveTo(ss.x, ss.y);
+		}
+		else if(ss.action == "mousemove") {
+			context.lineTo(ss.x, ss.y);
+			context.stroke();
+		}
+		else {
+			context.lineTo(ss.x, ss.y);
+			context.stroke();
+		}
+	});	
+		
+});
+</script>
+</body>
+</html>

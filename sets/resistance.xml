@@ -1,0 +1,91 @@
+<trainingset>
+	<title>Equivalent Resistance</title>
+	<problem>
+		<variation>
+			<statement>If a circuit has two resistors in series, with resistance #r1# $\Omega$ and resistance #r2# $\Omega$, find the resistance of the circuit.</statement>
+			<answer>
+				<value accuracy="exact">#ans1#</value>
+				<trailer>$\Omega$</trailer>
+			</answer>
+			<solution>
+			The equivalent resistance of resistors in series is simply the sum of their resistances. So, the answer is $#r1# + #r2# = \textbf{#ans1# } \Omega$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>Find the equivalent resistance of 3 resistors wired in series, with resistances #r1# $\Omega$, #r2# $\Omega$, and #r3# $\Omega$.</statement>
+			<answer>
+				<value accuracy="exact">#ans2#</value>
+				<trailer>$\Omega$</trailer>
+			</answer>
+			<solution>
+			The equivalent resistance of resistors in series is simply the sum of their resistances. So, the answer is $#r1# + #r2# + #r3# = \textbf{#ans2# } \Omega$.
+			</solution>
+		</variation>
+		<variable id="r1" lower="5" upper="100" step="5"></variable>
+		<variable id="r2" lower="5" upper="100" step="5"></variable>
+		<variable id="r3" lower="5" upper="100" step="5"></variable>
+		<expression id="r1">r1</expression>
+		<expression id="r2">r2</expression>
+		<expression id="r3">r3</expression>
+		<expression id="ans1">r1+r2</expression>
+		<expression id="ans2">r1+r2+r3</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>Two resistors with resistance #r1# $\Omega$ and #r2# $\Omega$ are wired in parallel. Find the equivalent resistance.</statement>
+			<answer>
+				<value accuracy="-6">#ans1#</value>
+				<trailer>$\Omega$</trailer>
+			</answer>
+			<solution>
+			The equivalent resistance of two resistors in parallel is given by $\frac{1}{R_{eq}} = \frac{1}{R_1}+\frac{1}{R_2}$. So, the answer is $\frac{1}{\frac{1}{#r1#} + \frac{1}{#r2#}} = \textbf{#ans1# } \Omega$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>If two resistors with resistances of #r1# $\Omega$ and #r2# $\Omega$ are wired in parallel, and a third resistor with resistance #r3# $\Omega$ is wired in series with the parallel system, find the equivalent resistance of the circuit.</statement>
+			<answer>
+				<value accuracy="-6">#ans2#</value>
+				<trailer>$\Omega$</trailer>
+			</answer>
+			<solution>
+			We can decompose this problem into finding the equivalent resistance of the parallel resistors, and then adding this to the third resistor.
+			The equivalent resistance of two resistors in parallel is given by $\frac{1}{R_{eq}} = \frac{1}{R_1}+\frac{1}{R_2}$. So, the first resistance is $\frac{1}{\frac{1}{#r1#} + \frac{1}{#r2#}} = #ans1# \Omega$.
+			The equivalent resistance of the series circuit is $R_{eq} + R_{3} = #ans1# + #r3# = \textbf{#ans2#} \Omega$.
+			</solution>
+		</variation>
+		<code><![CDATA[
+			var factors = function(num) {
+				var n_factors = [];
+				
+				for (var i = 1; i <= Math.floor(Math.sqrt(num)); i += 1)
+					if (num % i === 0) {
+						pair = [i, num/i]
+						if (num / i !== i)
+							n_factors.push(pair);
+					}
+				n_factors.sort();  // numeric sort
+				return n_factors;
+			};
+			var pairs = [];
+			for(var i = 0; i < 1000; i++) {
+				var facts = factors(i); 
+				for(var j = 0; j < facts.length; j++) { 
+					var sum = facts[j][0]+facts[j][1]; 
+					for(var k = 0; k < facts.length; k++) { 
+						if(facts[k][0] == sum || facts[k][1] == sum) 
+							pairs.push(facts[j]);
+					} 
+				} 
+			}
+			var pair = randSelect(pairs);
+			r1 = pair[0];
+			r2 = pair[1];
+		]]></code>
+		<variable id="r3" lower="5" upper="100" step="5"></variable>
+		<expression id="r1">r1</expression>
+		<expression id="r2">r2</expression>
+		<expression id="r3">r3</expression>
+		<expression id="ans1">Math.round(1/(1/r1+1/r2))</expression>
+		<expression id="ans2">Math.round(1/(1/r1+1/r2))+r3</expression>
+	</problem>
+</trainingset>

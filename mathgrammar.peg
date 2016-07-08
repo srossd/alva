@@ -1,0 +1,48 @@
+start
+  = e:equality
+  
+equality
+  = left:additive " "* "=" " "* right:equality {return new Equality(left,right,"="); }
+  / left:additive " "* "<=" " "* right:equality {return new Equality(left,right,"<="); }
+  / left:additive " "* ">=" " "* right:equality {return new Equality(left,right,">="); }
+  / left:additive " "* "<" " "* right:equality {return new Equality(left,right,"<"); }
+  / left:additive " "* ">" " "* right:equality {return new Equality(left,right,">"); }
+  / additive
+
+additive
+  = left:multiplicative " "* "+" " "* right:additive { return new Additive(left,right,"+"); }
+  / left:multiplicative " "* "-" " "* right:additive { return new Additive(left,right,"-"); }
+  / multiplicative
+
+multiplicative
+  = left:exponential " "* " "*  right:multiplicative { return new Multiplicative(left,right,"*",false); }
+  / left:exponential " "* "*"  " "*  right:multiplicative { return new Multiplicative(left,right,"*",true); }
+  / left:exponential " "* "/"  " "*  right:multiplicative { return new Multiplicative(left,right,"/",false); }
+  / exponential
+
+exponential
+  = left:primary " "* "^" " "* right:exponential { return new Exponential(left,right); }
+  / primary
+
+primary
+  = atom
+  / "(" " "* e:equality " "*  ")" { return new Paren(e); }
+
+variable
+  = reserved
+  / letters:[a-zA-Z]+ { return new Var(letters.join("")); }
+  
+reserved
+  = "pi" { return new Var("\\pi"); }
+  / "alpha" { return new Var("\\alpha"); }
+  / "beta" { return new Var("\\beta"); }
+  / "gamma" { return new Var("\\gamma"); }
+  / "mu" {return new Var("\\mu"); }
+  / "phi" { return new Var("\\phi"); }
+  / "omega" { return new Var("\\omega"); }
+
+integer
+  = digits:[0-9]+ { return new Num(parseInt(digits.join(""))); }
+
+atom
+  = integer / variable

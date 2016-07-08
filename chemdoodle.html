@@ -1,0 +1,187 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="jquery-csv.js"></script>
+<script>
+$(document).ready(function() {
+	drawing = false;
+	context = document.getElementById("canvas").getContext("2d");
+	context2 = document.getElementById("canvas2").getContext("2d");
+	context3 = document.getElementById("canvas3").getContext("2d");
+	context4 = document.getElementById("canvas4").getContext("2d");
+	context.strokeStyle = "black";
+	context.lineJoin = "round";
+	context.lineWidth = 30;
+	x0 = 0;
+	y0 = 0;
+	size = 400;
+	size2 = 80;
+	res = 8;
+	loadWeights();
+    $('#canvas').mousedown(function(e) {
+        var mouseX = e.pageX-this.offsetLeft;
+        var mouseY = e.pageY-this.offsetTop;
+        
+        addClick(mouseX,mouseY);
+        drawing = true;
+    });
+    
+    $('#canvas').mousemove(function(e) {
+        var mouseX = e.pageX-this.offsetLeft;
+        var mouseY = e.pageY-this.offsetTop;
+        
+        if(drawing) {
+            addClick(mouseX,mouseY);
+        }
+    });
+    
+    $('#canvas').mouseup(function(e) {
+        drawing = false;
+    });
+    
+    $('#canvas').mouseleave(function(e) {
+        drawing = false;
+    });
+    
+    function addClick(x,y) {
+        if(drawing) {
+            context.beginPath();
+            context.moveTo(x0,y0);
+            context.lineTo(x,y);
+            x0 = x;
+            y0 = y;
+        }
+        else {
+            x0 = x;
+            y0 = y;
+        }
+        context.closePath();
+        context.stroke();
+        input = miniaturize();
+        nnPropagate(input);
+    }
+    
+    function miniaturize() {
+        blocks = [];
+        for(var i = 0; i < res*res; i++)
+            blocks.push(0);
+        data = context.getImageData(0,0,size,size).data;
+        for(var i = 0; i < data.length; i += 4) {
+            if(data[i+3] != 0) {
+                c = (i/4) % size;
+                r = (i/4-c)/size;
+                cs = Math.floor(c*res/size);
+                rs = Math.floor(r*res/size);
+                blocks[rs*res+cs] += 1;
+            }
+        }
+        
+        m = 0;
+        for(var i = 0; i < blocks.length; i++)
+            m = Math.max(m,blocks[i]);
+        for(var i = 0; i < blocks.length; i++) {
+            gray = 255-Math.floor(255*blocks[i]/m);
+			blocks[i] = Math.floor(16*blocks[i]/m);
+            c = i % res;
+            r = (i-c)/res;
+            context2.fillStyle = "rgb("+gray+","+gray+","+gray+")";
+            context2.fillRect( size2/res*c,size2/res*r,size2/res,size2/res);
+        }
+        return blocks;
+    }
+	function loadWeights() {
+		$.ajax({
+            url : "digit_weights1.csv",
+            dataType: "text",
+			async: false,
+            success : function (data) {
+                W1 = $.csv.toArrays(data);
+            }
+        });
+		$.ajax({
+            url : "digit_weights2.csv",
+            dataType: "text",
+			async: false,
+            success : function (data) {
+                W2 = $.csv.toArrays(data);
+            }
+        });
+	}
+	function nnPropagate(input) {
+		console.log(input);
+		input = normalize(input);
+		console.log(input);
+		hidden = [];
+		for(var i = 0; i < 64; i++) {
+			sum = 0;
+			for(var j = 0; j < res*res; j++)
+				sum += W1[i][j]*input[j];
+			hidden.push(1/(1+Math.exp(-sum)));
+		}
+		displayHidden(hidden);
+		output = [];
+		for(var i = 0; i < 10; i++) {
+			sum = 0;
+			for(var j = 0; j < 64; j++)
+				sum += W2[i][j]*hidden[j];
+			output.push(-Math.log(1-1/(1+Math.exp(-sum))));
+		}
+		displayOutput(output);
+		num = 0;
+		for(var i = 0; i < 10; i++)
+			if(output[i] > output[num])
+				num = i;
+		console.log(num);
+	}
+	function normalize(xs) {
+		mean = 0;
+		for(var i = 0; i < xs.length; i++)
+			mean += xs[i];
+		mean /= xs.length;
+		sd = 0;
+		for(var i = 0; i < xs.length; i++)
+			sd += (mean-xs[i])*(mean-xs[i]);
+		sd = Math.sqrt(sd/xs.length);
+		xs2 = [];
+		for(var i = 0; i < xs.length; i++)
+			xs2.push((xs[i]-mean)/sd);
+		return xs2;
+	}
+	function displayHidden(hidden) {
+		for(var i = 0; i < hidden.length; i++) {
+			c = i % 5;
+			r = (i-c)/5;
+			gray = Math.floor(255*(1-hidden[i]));
+			context3.fillStyle = "rgb("+gray+","+gray+","+gray+")";
+			context3.fillRect(16*c,16*r,16,16);
+		}
+	}
+	function displayOutput(output) {
+		m = 0;
+		for(var i = 0; i < 10; i++)
+			if(output[i] > m)
+				m = output[i];
+		context4.fillStyle = "white";
+		context4.fillRect(0,0,40,240);
+		for(var i = 0; i < 10; i++) {
+			context4.fillStyle = "black";
+			context4.fillText(""+i,20,24*(i+.5));
+			gray = Math.floor(255-255*(output[i]/m));
+			context4.fillStyle = "rgb("+gray+","+gray+","+gray+")";
+			context4.fillRect(40,24*i,40,24);
+		}
+	}
+});
+</script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400" style="border:1px solid black;"></canvas>
+<div style="float:right;position:relative;">
+<div style="position:relative;">
+<canvas id="canvas2" width="80" height="80" style="border:1px solid black;"></canvas>
+    </div>
+    <div style="position:relative;">
+<canvas id="canvas3" width="80" height="64" style="border:1px solid black;"></canvas>
+    </div>
+    <canvas id="canvas4" width="80" height="240" style="border:1px solid black;"></canvas>
+</div>
+</body>

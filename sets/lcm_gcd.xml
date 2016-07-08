@@ -1,0 +1,53 @@
+<trainingset>
+	<title>LCM and GCD</title>
+	<problem>
+		<variation>
+			<statement>What is the least common multiple of #x1# and #x2#?</statement>
+			<answer>
+				<value>#lcm#</value>
+			</answer>
+			<solution>
+				One way of computing the least common multiple is by finding the greatest common divisor, and then using the relation $a \times b = \gcd(a,b) \times \textrm{lcm}(a,b)$.
+				To find the greatest common divisor, we can use the Euclidean algorithm. The Euclidean algorithm works by asserting that the $\gcd(a,b)$ is equal to $\gcd(b,a \mod{b})$. We can use this fact to rewrite the problem repeatedly until it is trivial:
+				#sol#
+				So, the answer is $\frac{#x1# \times #x2#}{#gcd#} = \textbf{#lcm#}$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the greatest common divisor of #x1# and #x2#?</statement>
+			<answer>
+				<value>#gcd#</value>
+			</answer>
+			<solution>
+				To find the greatest common divisor, we can use the Euclidean algorithm. The Euclidean algorithm works by asserting that the $\gcd(a,b)$ is equal to $\gcd(b,a \mod{b})$. We can use this fact to rewrite the problem repeatedly until it is trivial:
+				#sol#
+			</solution>
+		</variation><code><![CDATA[
+			function gcd(a,b) {
+				if(b == 0)
+					return a;
+				else
+					return gcd(b, a % b);
+			}
+			function gcdtrace(a,b) {
+				if(b == 0)
+					return "gcd("+a+","+b+")\n= "+"GCD is "+a+"";
+				else
+					return "gcd("+a+","+b+")\n= "+gcdtrace(b,a%b);
+			}
+			fac = 1+Math.floor(Math.random()*12);
+			m1 = 1+Math.floor(Math.random()*20);
+			m2 = 1+Math.floor(Math.random()*20);
+			x1 = m1*fac;
+			x2 = m2*fac;
+			g = gcd(x1,x2);
+			l = x1*x2/g;
+			sol = gcdtrace(x1,x2);
+		]]></code>
+		<expression id="x1">x1</expression>
+		<expression id="x2">x2</expression>
+		<expression id="gcd">g</expression>
+		<expression id="lcm">l</expression>
+		<expression id="sol">sol</expression>
+	</problem>
+</trainingset>

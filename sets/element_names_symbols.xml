@@ -1,0 +1,27 @@
+<trainingset>
+	<title>Element Names and Symbols</title>
+	<data>sets/elements.json</data>
+	<problem>
+		<variation>
+			<statement>What is the name of the element with symbol #symbol#?</statement>
+			<answer>
+				<value>#name#</value>
+			</answer>
+			<solution>
+			#symbol# is the chemical symbol for the element #name#.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the symbol of the element named #name#?</statement>
+			<answer>
+				<value>#symbol#</value>
+			</answer>
+			<solution>
+			#symbol# is the chemical symbol for the element #name#.
+			</solution>
+		</variation>
+		<variable id="elem" obj="data['elements']"></variable>
+		<expression id="name">elem["name"]</expression>
+		<expression id="symbol">elem["symbol"]</expression>
+	</problem>
+</trainingset>

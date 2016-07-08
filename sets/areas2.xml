@@ -1,0 +1,144 @@
+<trainingset>
+	<title>Areas 2</title>
+	<problem>
+		<variation>
+			<statement>What is the area of triangle ABC if AB = #alpha#, BC = #beta#, and the angle between AB and BC is $#theta1#$?</statement>
+			<answer>
+				<value accuracy="exact">#ans1#</value>
+			</answer>
+			<solution>
+			The area of a triange with sides $a$ and $b$ and the angle between them $\theta$ is $\frac{1}{2} a b \sin{\theta}$. 
+			$\frac{1}{2} (#alpha#) (#beta#) \sin{#theta1#} = #ans1#$
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the area of triangle ABC if AB = #alpha#, BC = #beta#, and the angle between AB and BC is $#theta2#$?</statement>
+			<answer>
+				<value accuracy="exact">#ans2#</value>
+				<trailer>$\sqrt{3}$</trailer>
+			</answer>
+			<solution>
+			The area of a triange with sides $a$ and $b$ and the angle between them $\theta$ is $\frac{1}{2} a b \sin{\theta}$. 
+			$\frac{1}{2} (#alpha#) (#beta#) \sin{#theta2#} = #ans2#$
+			</solution>
+		</variation>
+		<variable id="alpha" lower="1" upper="20" step="1"></variable>
+		<variable id="beta" lower="1" upper="20" step="1"></variable>
+		<variable id="angle2" lower="0" upper="1" step="1"></variable>
+		<variable id="angle1" lower="0" upper="2" step="1"></variable>
+		<expression id="alpha">alpha</expression>
+		<expression id="beta">beta</expression>
+		<expression id="theta1">["\\frac{\\pi}{6}","\\frac{\\pi}{2}","\\frac{5\\pi}{6}"][angle1]</expression>
+		<expression id="theta2">["\\frac{\\pi}{3}","\\frac{2\\pi}{3}"][angle2]</expression>
+		<expression id="ans1">alpha*beta*(angle1 == 1 ? 1 : .5)/2</expression>
+		<expression id="ans2">alpha*beta/4</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>What is the area of an equilateral triangle with side length #s#?</statement>
+			<answer>
+				<value accuracy="exact">#area#</value>
+				<trailer>$\sqrt{3}$</trailer>
+			</answer>
+			<solution>
+			The area of an equilateral triangle is $\frac{s^2 \sqrt{3}}{4}$. Therefore, the area of this triangle is $#area# \sqrt{3}$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the side length of an equilateral triangle with area $#area# \sqrt{3}$?</statement>
+			<answer>
+				<value accuracy="exact">#s#</value>
+			</answer>
+			<solution>
+			The area of an equilateral triangle is $\frac{s^2 \sqrt{3}}{4}$. Therefore, the side length of this triangle is $#s#$.
+			</solution>
+		</variation>
+		<variable id="s" lower="1" upper="20" step="1"></variable>
+		<expression id="s">s</expression>
+		<expression id="area">s*s/4</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>What is the area of a regular hexagon with side length #s#?</statement>
+			<answer>
+				<value accuracy="exact">#area#</value>
+				<trailer>$\sqrt{3}$</trailer>
+			</answer>
+			<solution>
+			The area of a regular hexagon, composed of 6 equilateral triangles, is $\frac{3 s^2 \sqrt{3}}{2}$. Therefore, the area of this hexagon is $#area# \sqrt{3}$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the side length of a regular hexagon with area $#area# \sqrt{3}$?</statement>
+			<answer>
+				<value accuracy="exact">#s#</value>
+			</answer>
+			<solution>
+			The area of an regular hexagon, composed of 6 equilateral triangles, is $\frac{3 s^2 \sqrt{3}}{2}$. Therefore, the side length of this hexagon is $#s#$.
+			</solution>
+		</variation>
+		<variable id="s" lower="1" upper="15" step="1"></variable>
+		<expression id="s">s</expression>
+		<expression id="area">3*s*s/2</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>What is the area of a trapezoid with bases #alpha# and #beta# and height #height#?</statement>
+			<answer>
+				<value accuracy="exact">#area#</value>
+			</answer>
+			<solution>
+			The area of a trapezoid is $\frac{(a+b)h}{2}$, where $a$ and $b$ are the bases and $h$ is the height.
+			The area of this trapezoid is $\frac{(#alpha#+#beta#) #height#}{2} = #area#$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the height of a trapezoid with area #area# and bases #alpha# and #beta#?</statement>
+			<answer>
+				<value accuracy="exact">#height#</value>
+			</answer>
+			<solution>
+			The area of a trapezoid is $\frac{(a+b)h}{2}$, where $a$ and $b$ are the bases and $h$ is the height.
+			The height of this trapezoid is $\frac{2 #area#}{#alpha#+#beta#} = #height#$.
+			</solution>
+		</variation>
+		<variable id="alpha" lower="1" upper="15" step="1"></variable>
+		<variable id="beta" lower="1" upper="15" step="1"></variable>
+		<variable id="height" lower="1" upper="15" step="1"></variable>
+		<expression id="alpha">alpha</expression>
+		<expression id="beta">beta</expression>
+		<expression id="height">height</expression>
+		<expression id="area">height*(alpha+beta)/2</expression>
+	</problem>
+	<problem>
+		<variation>
+			<statement>Find the area of an ellipse with semiaxes #alpha# and #beta#.</statement>
+			<answer>
+				<value accuracy="exact">#ans#</value>
+				<trailer>$\pi$</trailer>
+			</answer>
+			<solution>
+			The area of an ellipse is $\pi a b$. $\pi (#alpha#)(#beta) = #ans# \pi$.
+			</solution>
+		</variation>
+		<variation>
+			<statement>What is the area of an ellipse with axes #twoalpha# and #twobeta#?</statement>
+			<answer>
+				<value accuracy="exact">#ans#</value>
+				<trailer>$\pi$</trailer>
+			</answer>
+			<solution>
+			The area of an ellipse is $\pi a b$. 
+			$\pi (\frac{#alpha#}{2})(\frac{#beta#}{2}) = #ans# \pi$.
+			</solution>
+		</variation>
+		<variable id="alpha" lower="2" upper="15" step="1"></variable>
+		<variable id="beta" lower="2" upper="15" step="1"></variable>
+		<expression id="alpha">alpha</expression>
+		<expression id="twoalpha">2*alpha</expression>
+		<expression id="beta">beta</expression>
+		<expression id="twobeta">2*beta</expression>
+		<expression id="ans">alpha*beta</expression>
+	</problem>
+</trainingset>
+		

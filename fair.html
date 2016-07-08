@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Activities Fair Round</title>
+	<link href="favicon.ico" rel="icon" type="image/x-icon" />
+	
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> 
+	MathJax.Hub.Config({
+			extensions: ["tex2jax.js"],
+			jax: ["input/TeX","output/HTML-CSS"],
+			tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+	});
+	</script>
+	<script>
+		var name = "Player 1";
+	</script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="https://www.firebase.com/js/libs/idle.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.4" type="text/css" media="screen" />
+	<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.4"></script>
+
+	<link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+	<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+	<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
+
+	<link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+	<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,400italic|Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='stylesheet.css' rel='stylesheet' type='text/css'>
+	<script src="jquery.xml2json.js"></script>
+	<script src='fair.js'></script>
+</head>
+<body class="fair">
+	<div id="content" class="centerbox">
+		<div id="buzzheader" align="center">				
+			<a href="#" onclick="next()" class="button" id="next">Next</a>
+			<a href="#" onclick="buzz()" class="button hidden" id="buzz">Buzz</a>
+		</div>		
+		<div id="currentquestion">
+		</div>
+		<div id="bottom">
+		</div>
+	</div>
+	
+	<div class="hidden">
+		<div id="answer">
+		</div>
+	</div>
+</body>

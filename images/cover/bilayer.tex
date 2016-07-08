@@ -1,0 +1,24 @@
+\documentclass[preview]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{euler}
+
+\begin{document}
+
+\newcommand{\phospholipid}[4]{
+	\draw[ball color=red!50] #1 circle (#2);
+	\draw[semithick,decorate, decoration={snake}] ($#1+({#4-20}:#2)$) -- ++(#4:#3);
+	\draw[semithick,decorate, decoration={snake}] ($#1+({#4+20}:#2)$) -- ++(#4:#3);
+	\path #1 -- +(#4:1.2*#3) -- +(180+#4:1.2*#3);
+}
+
+\begin{tikzpicture}
+\foreach \theta in {80,80.3,...,100} {
+	\phospholipid{(\theta:31)}{0.07}{.4}{\theta+180}
+	\phospholipid{(\theta:30)}{0.07}{.4}{\theta}
+}
+\end{tikzpicture}
+
+\end{document}
